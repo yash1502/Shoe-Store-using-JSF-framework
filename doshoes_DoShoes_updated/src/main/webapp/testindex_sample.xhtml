@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>DoShoes Home</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="style.css" />
+        <b:container fluid="true">
+            <b:row>
+                <b:navBar position="top" sticky="true" brand="DoShoes" brandHref="#">
+                    <b:navbarLinks>
+                        <b:navLink value="Home" href="faces/index.xhtml"></b:navLink>
+                        <b:navLink value="Product" href="faces/sampleProduct.xhtml"></b:navLink>
+                    </b:navbarLinks>
+                    <b:navbarLinks pull="right">
+                        
+                    </b:navbarLinks>                    
+                    <b:navbarLinks pull="right">
+                        <b:navLink rendered="#{empty custBean.firstname}" iconAwesome="fa-user" icon-align="right" value="Sign In" href="faces/login.xhtml"></b:navLink>
+                        <b:navLink rendered="#{empty custBean.firstname}" value="Register" href="faces/signup.xhtml"></b:navLink>
+                        <b:dropMenu rendered="#{not empty custBean.firstname}" iconAwesome="fa-user" icon-align="right" value="Welcome #{custBean.firstname}">'
+                            <h:form>
+                                <b:commandButton look="danger" value="Log Out" action="#{customerController.logout()}" style="width:100%"></b:commandButton>
+                            </h:form>
+                        </b:dropMenu> 
+                    </b:navbarLinks>
+                </b:navBar>
+            </b:row>
+            <b:row>
+                <b:carousel id="shoe-carousel" interval="5000">
+                    <b:carouselItem >
+                        <img src="resources/images/the-air-jordan-1-retro-high.jpg" alt="Air Emblazoned" class="carousel-image" />
+                        <b:carouselCaption>
+                            <h3>Air Jordan 1 The Ten</h3>
+                            <p>The start of Michael Jordan's sneaker culture and legacy</p>
+                        </b:carouselCaption>
+                    </b:carouselItem>
+                    <b:carouselItem>
+                        <img src="resources/images/lebron-15-debut.jpg" alt="Air Jordan 1" class="carousel-image" />
+                        <b:carouselCaption>
+                            <h3>Lebron 15 Wine</h3>
+                            <p>Dominate the court</p>
+                        </b:carouselCaption>
+                    </b:carouselItem>
+                    <b:carouselItem>
+                        <img src="resources/images/addidas-tshirt.png" alt="Veteran's Day" class="carousel-image" />
+                        <b:carouselCaption>
+                            <h3></h3>
+                            <p></p>
+                        </b:carouselCaption>
+                    </b:carouselItem>
+                    
+                </b:carousel>
+            </b:row>
+            <hr />
+
+        </b:container>
+        <br />
+    </h:body>
+</html>
+
+
