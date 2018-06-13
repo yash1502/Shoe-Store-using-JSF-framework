@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>${cusBean.name}</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="style.css" />
+        <b:container>
+            <b:row>
+                <b:navBar position="top" sticky="true" brand="DoShoes" brandHref="#" inverse="true">
+                    <b:navbarLinks>
+                        <b:navLink value="Home" href="faces/index.xhtml"></b:navLink>
+                        <b:navLink value="Product" href="faces/products.xhtml"></b:navLink>
+
+
+                    </b:navbarLinks>
+                    <b:navbarLinks pull="right">
+                        <b:navLink iconAwesome="fa-shopping-cart" icon-align="right" value="Cart (#{cusBean.cart.size()})" href="faces/cart.xhtml"></b:navLink>
+                    </b:navbarLinks>
+
+                    <b:navbarLinks pull="right">
+                        <b:navLink rendered="#{empty custBean.firstname}">
+                            <button id="btrigger" class="btn btn-info btn-link" data-target="#amodal" data-toggle="modal">Log In</button>
+                        </b:navLink>
+                        <b:navLink rendered="#{empty custBean.firstname}">
+                            <button id="btrigger" class="btn btn-info btn-link" data-target="#amodal1" data-toggle="modal">Register</button>
+                        </b:navLink>
+
+                        <b:dropMenu rendered="#{not empty custBean.firstname}" iconAwesome="fa-user" icon-align="right" value="Welcome #{custBean.firstname}">'
+                            <h:form>
+                                <center><b:commandButton rendered="#{custBean.email=='admin'}" look="success" value="Admin" action="admin?faces-redirect=true" style="width:80%"></b:commandButton></center>
+                                <center><b:commandButton look="danger" value="Log Out" action="#{customerController.logout()}" style="width:80%"></b:commandButton></center>
+
+                            </h:form>
+                        </b:dropMenu> 
+                    </b:navbarLinks>
+                    <b:navbarLinks>
+                        <b:navLink value="Shoes" href="faces/shoes.xhtml"></b:navLink>
+                        <b:navLink value="Clothes"  href="faces/clothes.xhtml"></b:navLink>
+                    </b:navbarLinks>
+                    
+                    <b:navbarLinks pull="right">
+                        <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" role="search">
+                            <div class="form-group">
+                                <b:inputText type="text" class="form-control" value="#{productBean.productName}"/>
+                            </div>
+                            <b:commandButton type="submit" class="btn btn-default" action="#{productController.redirectToResultsPage()}">
+                                Search
+                            </b:commandButton>
+                        </h:form>
+                    </b:navbarLinks>
+                    
+                </b:navBar>
+
+            </b:row>
+            <h1>#{productBean.productName}</h1>
+            <b:row>
+                <h:form>
+                <b:image class="image-row" col-xs="12" col-sm="12" col-md="6" col-lg="6" value="resources/images/#{cusBean.image}"/>
+                <p style="color:#f48342;font-size:24px">Price: ${cusBean.price}</p>
+                <b:selectOneMenu value="#{cusBean.shoeSize}" required="true" label="Select your shoe size" col-md="6">
+                    <f:selectItem itemLabel="(Please select size)" itemValue="" />
+                    <f:selectItem itemLabel="8" itemValue="8" />
+                    <f:selectItem itemLabel="9" itemValue="9" />
+                    <f:selectItem itemLabel="10" itemValue="10" />
+                    <f:selectItem itemLabel="11" itemValue="11" />
+                    <f:selectItem itemLabel="12" itemValue="12" />
+                </b:selectOneMenu>
+                
+                <b:commandButton action="#{cusBean.addToCart()}" value="Add to Cart" col-md="6"/>
+                </h:form>
+            </b:row>
+            <br/>
+            <b:row>
+
+            </b:row>
+        </b:container>
+        <br/>
+        <b:navBar position="bottom" inverse="true" sticky="false">
+        <center>
+        <b>© All Rights Reserved DoShoes Inc. 2018</b><br/>
+        <b:socialShare shares="twitter,linkedin,facebook"
+                       showLabel="true" show-count="false"
+                        />
+        </center>
+        </b:navBar>
+    </h:body>
+</html>
+

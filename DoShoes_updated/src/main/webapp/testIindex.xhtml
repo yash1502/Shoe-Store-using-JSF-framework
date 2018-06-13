@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>DoShoes Home</title>
+    </h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:body>
+        <ui:composition template="./WEB-INF/templates/layout.xhtml">
+        <h:outputStylesheet library="css" name="style.css" />
+            <!--<ui:define name="header">Bob</ui:define>-->
+            <ui:define name="content">
+                
+                <b:row>
+                    <b:navBar  brandHref="#" inverse="true">
+                        <b:navbarLinks>
+                            <b:navLink value="Shoes" href="product.xhtml"></b:navLink>
+                            <b:navLink value="Accessories" href="product.xhtml"></b:navLink>
+                            <b:navLink value="Admin" href="admin.xhtml"></b:navLink>
+                        </b:navbarLinks>
+                    </b:navBar>
+                </b:row>
+
+                <b:row>
+                    <b:carousel id="shoe-carousel" interval="5000">
+                        <b:carouselItem >
+                            <img src="resources/images/the-air-jordan-1-retro-high.jpg" alt="Air Emblazoned" class="carousel-image" />
+                            <b:carouselCaption>
+                                <h3>Air Jordan 1 The Ten</h3>
+                                <p>The start of Michael Jordan's sneaker culture and legacy</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+                        <b:carouselItem>
+                            <img src="resources/images/lebron-15-debut.jpg" alt="Air Jordan 1" class="carousel-image" />
+                            <b:carouselCaption>
+                                <h3>Lebron 15 Wine</h3>
+                                <p>Dominate the court</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+                        <b:carouselItem>
+                            <img src="resources/images/adidas-nmd.png" alt="Veteran's Day" class="carousel-image" />
+                            <b:carouselCaption>
+                                <h3>Adidas NMD XR1</h3>
+                                <p>In triple black.</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+
+                        <b:carouselItem>
+                            <img src="resources/images/addidas-tshirt.jpg" alt="Veteran's Day" class="carousel-image" />
+                            <b:carouselCaption>
+                                <h3>Adidas NMD XR1</h3>
+                                <p>In triple black.</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+
+                        <b:carouselItem>
+                            <img src="resources/images/nikeT-shirt.jpg" alt="Veteran's Day" class="carousel-image" />
+                            <b:carouselCaption>
+                                <h3>Adidas NMD XR1</h3>
+                                <p>In triple black.</p>
+                            </b:carouselCaption>
+                        </b:carouselItem>
+                    </b:carousel>
+                </b:row>
+
+                <b:row >
+
+                    <b:image  name="gif_nike" value ="resources/images/nike1.gif" ></b:image>
+                    <b:image name="gif_lebron" value ="resources/images/lebron1.gif" ></b:image>
+                    <b:image name="gif_addidas" value ="resources/images/addidas.gif" ></b:image>
+
+                </b:row>
+
+                <b:modal id="amodal" title="Log In" styleClass="modalPseudoClass">
+                    <b:container fluid="true">
+                        <h:form>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Username" />
+                            </b:column>
+                            <h:inputText id="username" value="#{custBean.email}"></h:inputText>
+                            <h:message for="username"></h:message>
+                            <br></br><br></br>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Password" />
+                            </b:column>
+                            <h:inputSecret id="password" value="#{custBean.password}"></h:inputSecret>
+                            <h:message for="password"></h:message>
+                            <br></br><br></br>
+                            <b:commandButton action="#{customerController.validateCustomer()}" value="Log In"/>
+                            <b:commandButton action="#{customerController.resetPassword()}" value="Forgot Password"/>
+                            <b:button value="Cancel" look="primary"  dismiss="modal"/>
+
+                        </h:form>
+                    </b:container>
+                </b:modal>
+                <b:modal id="amodal1" title="Register" styleClass="modalPseudoClass">
+
+                    <h:form>
+                        <h:outputText value="Register a new account (* required)" />
+                        <br />
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputText value="First Name*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputText placeholder="First Name*" id="firstName" required="true" value="#{custBean.firstname}">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputText value="Last Name*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputText placeholder="Last Name" id="lastName" required="true" value="#{custBean.lastname}">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Username*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputText placeholder="First Name" id="username" required="true" value="#{custBean.email}">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Password*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputSecret placeholder="Password" id="password" required="true" value="#{custBean.password}">
+                                </b:inputSecret>
+                            </b:column>
+                        </b:row>
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="Address*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputText placeholder="Address" id="address" required="true" value="#{custBean.address}">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="City*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputText placeholder="City" id="city" required="true" value="#{custBean.city}">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputText value="State*" />
+                            </b:column>
+                            <b:column>
+                                <b:inputText placeholder="State" id="state" required="true" value="#{custBean.state}">
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:commandButton action="#{customerController.add()}" value="Register"/>
+                            <b:button value="Cancel" look="primary"  dismiss="modal"/>
+                        </b:row>
+                    </h:form>
+
+                </b:modal>
+                
+            
+                </ui:define>
+            <!--<ui:define name="footer"></ui:define>-->
+        </ui:composition>
+    </h:body>
+</html>
+
+

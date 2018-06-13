@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Header</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <b:container fluid="true">`
+                <b:row>
+                    <b:navBar position="top" sticky="true" brand="DoShoes" brandHref="#" inverse="true">
+                        <b:navbarLinks>
+                            <b:navLink value="Home" href="faces/index.xhtml"></b:navLink>
+                            <b:navLink value="All Products" href="faces/products.xhtml"></b:navLink>
+
+
+                        </b:navbarLinks>
+                        <b:navbarLinks pull="right">
+                            <b:navLink iconAwesome="fa-shopping-cart" icon-align="right" value="Cart (#{cartController.count()})" href="faces/cart.xhtml"></b:navLink>
+                        </b:navbarLinks>
+
+                        <b:navbarLinks pull="right">
+                            <b:navLink rendered="#{empty custBean.firstname}">
+                                <button id="atrigger" class="btn btn-info btn-link" data-target="#amodal" data-toggle="modal">Log In</button>
+                            </b:navLink>
+                            <b:navLink rendered="#{empty custBean.firstname}">
+                                <button id="atrigger1" class="btn btn-info btn-link" data-target="#amodal1" data-toggle="modal">Register</button>
+                            </b:navLink>
+
+                            <b:dropMenu rendered="#{not empty custBean.firstname}" iconAwesome="fa-user" icon-align="right" value="Welcome #{custBean.firstname}">'
+                                <h:form>
+                                    <center><b:commandButton rendered="#{custBean.email=='Admin'}" look="success" value="Admin" action="admin?faces-redirect=true" style="width:80%"></b:commandButton></center>
+									<br></br>
+                                    <center><b:commandButton look="danger" value="Log Out" action="#{customerController.logout()}" style="width:80%"></b:commandButton></center>
+
+                                </h:form>
+                            </b:dropMenu> 
+                        </b:navbarLinks>
+                        <b:navbarLinks>
+                            <b:navLink value="Shoes" href="faces/shoes.xhtml"></b:navLink>
+                            <b:navLink value="Apparel"  href="faces/clothes.xhtml"></b:navLink>
+                        </b:navbarLinks>
+
+                        <b:navbarLinks pull="right">
+                            <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" role="search">
+                                <div class="form-group">
+                                    <b:inputText type="text" class="form-control" value="#{productBean.productName}"/>
+                                </div>
+                                <b:commandButton type="submit" class="btn btn-default" action="#{productController.redirectToResultsPage()}">                               
+									<b:icon name="search" />
+                                </b:commandButton>
+                            </h:form>
+                        </b:navbarLinks>
+
+                    </b:navBar>
+
+                </b:row>
+
+				<b:modal id="amodal" title="Log In" styleClass="modalPseudoClass">
+					<b:container fluid="true">
+						<b:form horizontal="true">
+							<b:inputText style="width: 70%" value="#{custBean.email}" placeholder="Email" required="true" label="Email" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="user" />
+								</f:facet>
+							</b:inputText>
+							<br></br>
+							<b:inputSecret style="width: 70%" value="#{custBean.password}" placeholder="Password" label="Password" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:iconAwesome name="key" />
+								</f:facet>
+							</b:inputSecret>								
+							<br></br>
+							<center>
+								<b:commandButton style="width: 30%" look="success" action="#{customerController.validateCustomer()}" value="Log In"/>
+                                &nbsp;
+                                <b:button style="width: 20%" value="Cancel" look="danger"  dismiss="modal"/>
+								<br></br>
+								<b:link style="font-size: 10px" href="faces/forgotPassword.xhtml">Forgot Password?</b:link>
+							</center>
+
+						</b:form>		
+					</b:container>
+					<!--<b:fetchBeanInfos />
+					<b:messages style = "color:red"/>-->
+				</b:modal>
+				<b:modal id="amodal1" title="Create New Account" styleClass="modalPseudoClass"
+						 closable="false"
+						 closeOnEscape="true">
+					<b:container>
+						<b:form horizontal="true">							
+							<b:inputText style="width: 30%" value="${custBean.firstname}" placeholder="First Name" required="true" label="First Name" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="user" />
+								</f:facet>
+							</b:inputText>
+
+							<b:inputText style="width: 30%" value="${custBean.lastname}" placeholder="Last Name" required="true" label="Last Name" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="user" />
+								</f:facet>
+							</b:inputText>
+
+							<b:inputText style="width: 30%" value="${custBean.email}" placeholder="Email" required="true" label="Email" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="envelope" />
+								</f:facet>
+							</b:inputText>
+
+							<b:inputSecret style="width: 30%" value="${custBean.password}" placeholder="Password* (min 6 characters)" label="Password*" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:iconAwesome name="key" />
+								</f:facet>
+								<f:validateLength minimum="6" ></f:validateLength>
+							</b:inputSecret>
+
+							<b:inputText style="width: 30%" value="${custBean.address}" placeholder="Address" required="true" label="Address" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="home" />
+								</f:facet>
+							</b:inputText>
+
+							<b:inputText style="width: 30%" value="${custBean.city}" placeholder="City" required="true" label="City" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="home" />
+								</f:facet>
+							</b:inputText>
+
+							<b:inputText style="width: 30%" value="${custBean.state}" placeholder="State (Abbreviation)" required="true" label="State" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="home" />
+								</f:facet>
+							</b:inputText>
+
+							<b:inputText style="width: 30%" value="${custBean.zip}" placeholder="Zip" required="true" label="Zip" colMd="10" labelColMd="2">
+								<f:facet name="prepend">
+									<b:icon name="home" />
+								</f:facet>
+							</b:inputText>
+							
+							
+							<b:commandButton style="margin-left: 200px" action="#{customerController.add()}" value="Register" oncomplete="if(!validationFailed) { $('.formValidationModalClass').modal('hide') } "/>
+							&nbsp;
+							<b:button value="Cancel" look="primary"  dismiss="modal"/>
+							
+						</b:form>
+					</b:container>
+					<!--                <b:fetchBeanInfos />
+									<b:messages style = "color:red"  />-->
+				</b:modal>
+            </b:container>
+        </ui:composition>
+    </h:body>
+</html>
+

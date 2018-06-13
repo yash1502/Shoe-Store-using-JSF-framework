@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>DoShoes Admin</title>
+    </h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:body>
+		<ui:composition template="./WEB-INF/templates/layout.xhtml">
+            <ui:define name="content">
+				<h:outputStylesheet library="css" name="style.css" />
+
+				<b:container>
+					<b:row>
+
+						<b:accordion expanded-panels="panel1">
+							<b:panel id="panel1" title="Add new Products">
+								<h:form>
+									<b:panelGrid columns="2" style="padding: 20px">
+										<b:row>
+											<b:column medium-screen="6">
+												<h:outputText value="Product Name" />
+											</b:column>
+											<h:inputText id="itemName" value="#{productBean.productName}"></h:inputText>
+											<h:message for="itemName"></h:message>
+										</b:row>
+										<br></br><br></br>
+										<b:row>
+											<b:column medium-screen="6">
+												<h:outputText value="Product Price" />
+											</b:column>
+											<h:inputText id="itemPrice" value="#{productBean.productPrice}"></h:inputText>
+											<h:message for="itemPrice"></h:message>
+										</b:row>
+										<br></br><br></br>
+										<b:row>
+											<b:column medium-screen="6">
+												<h:outputText value="Product Size" />
+											</b:column>
+											<h:inputText id="itemSize" value="#{productBean.size}"></h:inputText>
+											<h:message for="itemSize"></h:message>
+										</b:row>
+										<br></br><br></br>
+										<b:row>
+											<b:column medium-screen="6">
+												<h:outputText value="Product Brand" />
+											</b:column>
+											<h:inputText id="itemBrand" value="#{productBean.brand}"></h:inputText>
+											<h:message for="itemBrand"></h:message>
+										</b:row>
+										<br></br><br></br>
+										<b:row>
+											<b:column medium-screen="6">
+												<h:outputText value="Product Category" />
+											</b:column>
+											<h:inputText id="itemCat" value="#{productBean.category}"></h:inputText>
+											<h:message for="itemCat"></h:message>
+										</b:row>
+										<br></br><br></br>
+										<b:row>
+											<b:column medium-screen="6">
+												<h:outputText value="Product Image URL" />
+											</b:column>
+											<h:inputText id="itemImage" value="#{productBean.productImage}"></h:inputText>
+											<h:message for="itemImage"></h:message>
+										</b:row>
+										<br></br><br></br>
+										<b:row>
+											<b:commandButton action="#{productController.insert()}" look="success" value="Add Product"/>
+										</b:row>
+										<br></br><br></br>
+									</b:panelGrid>
+								</h:form>
+							</b:panel>
+						</b:accordion>
+
+
+					</b:row>
+
+
+					<h:form>
+						<b:dataTable value="#{productController.getAll()}" var="product">
+							<b:dataTableColumn >
+								<f:facet name="header">Product Image</f:facet>
+								<image src="#{product.productImage}" style="width:50px"/>
+							</b:dataTableColumn>
+							<b:dataTableColumn>
+								<f:facet name="header">Brand</f:facet>
+									#{product.brand} 
+							</b:dataTableColumn>
+							<b:dataTableColumn>
+								<f:facet name="header">Product ID</f:facet>
+									#{product.productId}
+							</b:dataTableColumn>
+							<b:dataTableColumn>
+								<f:facet name="header">Product Name</f:facet>
+									#{product.productName}
+							</b:dataTableColumn>
+							<b:dataTableColumn>                   
+								<f:facet name="header">Product Price</f:facet>
+									#{product.productPrice}
+							</b:dataTableColumn>
+							<b:dataTableColumn>
+								<f:facet name="header">Category</f:facet>
+									#{product.category}
+							</b:dataTableColumn>
+							<b:dataTableColumn>
+								<f:facet name="header">Size</f:facet>
+									#{product.size}
+							</b:dataTableColumn>
+							<b:dataTableColumn>
+								<f:facet name="header">Update</f:facet>
+								<b:commandButton class="btn-info" value="Update" action="#{productController.edit(product)}"></b:commandButton>
+							</b:dataTableColumn>
+						</b:dataTable>
+
+					</h:form>
+
+				</b:container>
+			</ui:define>
+		</ui:composition>
+				<br/>
+				<b:navBar position="bottom" inverse="true">
+					<center>
+						<b>© All Rights Reserved DoShoes Inc. 2018</b><br/>
+						<b:socialShare shares="twitter,linkedin,facebook"
+									   showLabel="true" show-count="false"
+									   />
+					</center>
+				</b:navBar>
+				</h:body>
+				</html>

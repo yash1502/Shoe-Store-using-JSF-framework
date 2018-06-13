@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>DoShoes</title>
+    </h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:body>
+        <ui:composition template="./WEB-INF/templates/layout.xhtml">
+            <ui:define name="content">
+				<h:outputStylesheet library="css" name="style.css" />
+				<b:container fluid="true" id="carousel-container">
+
+                    <b:row>
+                        <b:carousel id="shoe-carousel" interval="5000">                         
+                            <b:carouselItem>
+                                <img src="resources/images/lebron-carousel.jpg" alt="" class="carousel-image" />
+                                <b:carouselCaption>
+                                    <h3>NBA Jerseys Available Now</h3>
+                                </b:carouselCaption>
+                            </b:carouselItem>
+                            <b:carouselItem>
+                                <img src="resources/images/nike_kobe.jpg" alt="" class="carousel-image" />
+                                <b:carouselCaption>
+                                    <h3>Kobes have arrived</h3>
+                                </b:carouselCaption>
+                            </b:carouselItem>
+                            <b:carouselItem>
+                                <img src="resources/images/yeezy.jpg" alt="" class="carousel-image" />
+                                <b:carouselCaption>
+                                    <h3>Unique selection of rare sneakers</h3>
+                                </b:carouselCaption>
+                            </b:carouselItem>
+							<b:carouselItem >
+                                <img src="resources/images/the-air-jordan-1-retro-high.jpg" alt="Air Emblazoned" class="carousel-image" />
+                                <b:carouselCaption>
+                                    <h3>The Classics: Air Jordans</h3>                                   
+                                </b:carouselCaption>
+                            </b:carouselItem>
+                        </b:carousel>
+                    </b:row>
+				</b:container>
+				<hr></hr>
+				<b:container>
+					<h3>Shop Our Selection</h3>
+					<h:form>
+						<b:row >
+							<h:commandLink action="adidasProducts">
+								<b:image col-sm="6" name="air-jordan" value ="resources/images/adidas-promo.png" ></b:image>			
+							</h:commandLink>
+							<h:commandLink action="nikeProducts">
+								<b:image col-sm="6" name="nike-promo" value ="resources/images/nike-promo.jpg" ></b:image>
+							</h:commandLink>
+						</b:row>
+						<b:row>
+							<h:commandLink action="jordanProducts">
+								<b:image col-sm="6" name="air-jordan" value ="resources/images/air-jordan-promo.jpg" ></b:image>
+							</h:commandLink>
+							<h:commandLink action="clothes">
+								<b:image col-sm="6" name="jersey-promo" value ="resources/images/jersey-promo.jpg" ></b:image>
+							</h:commandLink>
+						</b:row>
+					</h:form>
+				</b:container>
+				<hr></hr>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+
+

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>${cusBean.name}</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="style.css" />
+        <b:container>
+            <b:row>
+                <b:navBar position="top" sticky="true" brand="SneakerShop" brandHref="#" inverse="true">
+                    <b:navbarLinks>
+                        <b:navLink value="Home" href="faces/index.xhtml"></b:navLink>
+                        <b:navLink value="Product" href="faces/product.xhtml"></b:navLink>
+                    </b:navbarLinks>
+                    <b:navbarLinks pull="right">
+                        <b:navLink iconAwesome="fa-shopping-cart" icon-align="right" value="Cart (#{cusBean.cart.size()})" href="faces/cart.xhtml"></b:navLink>
+                    </b:navbarLinks>                    
+                    <b:navbarLinks pull="right">
+                        <b:navLink rendered="#{empty cusBean.firstName}" iconAwesome="fa-user" icon-align="right" value="Sign In" href="faces/login.xhtml"></b:navLink>
+                        <b:navLink rendered="#{empty cusBean.firstName}" value="Register" href="faces/signup.xhtml"></b:navLink>
+                        <b:dropMenu rendered="#{not empty cusBean.firstName}" iconAwesome="fa-user" icon-align="right" value="Welcome #{cusBean.firstName}">'
+                            <h:form>
+                                <b:commandButton look="danger" value="Log Out" action="#{cusBean.logout()}" style="width:100%"></b:commandButton>
+                            </h:form>
+                        </b:dropMenu> 
+                    </b:navbarLinks>
+                </b:navBar>
+            </b:row>
+            <h1>#{cusBean.name}</h1>
+            <b:row>
+                <h:form>
+                <b:image class="image-row" col-xs="12" col-sm="12" col-md="6" col-lg="6" value="resources/images/stan-smith.jpg"/>
+                <p style="color:#f48342;font-size:24px">Price: ${cusBean.price}</p>
+                <b:selectOneMenu value="#{cusBean.shoeSize}" required="true" label="Select your shoe size" col-md="6">
+                    <f:selectItem itemLabel="(Please select size)" itemValue="" />
+                    <f:selectItem itemLabel="8" itemValue="8" />
+                    <f:selectItem itemLabel="9" itemValue="9" />
+                    <f:selectItem itemLabel="10" itemValue="10" />
+                    <f:selectItem itemLabel="11" itemValue="11" />
+                    <f:selectItem itemLabel="12" itemValue="12" />
+                </b:selectOneMenu>
+                
+                <b:commandButton action="#{cusBean.addToCart()}" value="Add to Cart" col-md="6"/>
+                </h:form>
+            </b:row>
+            <br/>
+            <b:row>
+
+            </b:row>
+        </b:container>
+        <br/>
+        <b:navBar position="bottom" inverse="true" sticky="false">
+        <center>
+        <b>© All Rights Reserved DoShoes Inc. 2018</b><br/>
+        <b:socialShare shares="twitter,linkedin,facebook"
+                       showLabel="true" show-count="false"
+                        />
+        </center>
+        </b:navBar>
+    </h:body>
+</html>
+

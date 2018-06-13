@@ -1,0 +1,147 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 23, 2017, 10:12:13 PM
+    Author     : Chris
+*/
+body {
+	/*background: url(images/bg-body.jpg) repeat !important;*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	margin: 0px;
+	padding: 52px 0px;
+}
+
+.carousel-image {
+/*        height: 540px;
+        width: auto;*/
+width: 100%;
+}
+
+#shoe-carousel {
+    width: 100%;
+    height: 100%;
+    margin: 2px 0px 0px 0px;
+}
+
+.container-fluid #carousel-container{
+	margin-top: -20px;
+        padding: 0px;
+}
+
+.navbar.navbar-inverse {
+  background-color: #000;
+  /*color: white;*/
+  background-image: none;
+  margin-bottom: 0px;
+  border-radius: 0px;
+}
+
+
+
+.navbar.navbar-fixed-top {
+	margin-bottom: 30px;
+}
+
+.panel-collapse.collapse.in {
+    padding-bottom: 20px;
+}
+
+.navbar.navbar-inverse a {
+    color: #fff;
+}
+
+#content .container {
+    padding-bottom: 40px;
+}
+
+.container update-prod {
+    margin-top: -20px;
+}
+
+.update-prod.row{
+    padding-bottom: 40px
+}
+
+#subNav {
+	margin-top: 0px;
+}
+
+.section {
+    background: url(images/bg-content.jpg) repeat;
+    margin: 50px;
+}
+
+#successMsg {
+    color: #33cc33;
+    text-align: center;
+    height: 300px;
+    padding: 140px;
+    font-size: 28px;
+}
+
+#invalidMsg {
+    color: red;
+    text-align: center;
+    height: 300px;
+    padding: 140px;
+    font-size: 28px;
+}
+
+.col-lg-3, .col-md-4, .col-sm-6, .col-xs-12 {
+    padding: 10px;
+}
+
+.image-row {
+    border-radius: 4px;
+}
+
+.submit {
+    background-color: #33cc33;
+}
+
+.ui-panel {
+	border-style: none;
+}
+
+.product-title {
+	padding-left: 20px;
+}
+
+#itemImage:hover {
+	transform: scale(2); 
+}
+
+#itemImage {
+	transition: transform .2s;
+}
+
+.dropdown .dropdown-menu {
+	background-color: #333;
+}
+#atrigger{
+	padding: 0px;
+    margin-top: -3px;
+}
+#atrigger1{
+	padding: 0px;
+    margin-top: -3px;
+}
+
+#content {
+	margin-bottom: 30px;
+}
+
+#reset-container {
+	margin-right: -25px;
+}
+
+.modal-content .modal-body {
+	padding-left: 0px;
+}
+/*#empty-cart-btn.btn.btn-danger {
+	margin-top: -25px;
+}*/

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Products</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="style.css" />
+        <b:container fluid="true">
+            <b:row>
+                <b:navBar position="top" sticky="true" brand="DoShoes" brandHref="#">
+                    <b:navbarLinks>
+                        <b:navLink value="Home" href="faces/index.xhtml"></b:navLink>
+                        <b:navLink value="Product" href="faces/product.xhtml"></b:navLink>
+                    </b:navbarLinks>
+                    <b:navbarLinks pull="right">
+                        <b:navLink iconAwesome="fa-shopping-cart" icon-align="right" value="Cart (#{cusBean.cart.size()})" href="faces/cart.xhtml"></b:navLink>
+                    </b:navbarLinks>                    
+                    <b:navbarLinks pull="right">
+                        <b:navLink rendered="#{empty cusBean.firstName}" iconAwesome="fa-user" icon-align="right" value="Sign In" href="faces/login.xhtml"></b:navLink>
+                        <b:navLink rendered="#{empty cusBean.firstName}" value="Register" href="faces/signup.xhtml"></b:navLink>
+                        <b:dropMenu rendered="#{not empty cusBean.firstName}" iconAwesome="fa-user" icon-align="right" value="Welcome #{cusBean.firstName}">'
+                            <h:form>
+                                <b:commandButton look="danger" value="Log Out" action="#{cusBean.logout()}" style="width:100%"></b:commandButton>
+                            </h:form>
+                        </b:dropMenu> 
+                    </b:navbarLinks>
+                </b:navBar>
+            </b:row>
+        </b:container>
+        
+<!--        <b:container>
+            
+           
+             <b:image name="test" value="image_link"  tooltip="Shoes name" tooltipPosition="left"/>
+
+                <b:row style="padding-top:5px">
+                <h:outputText value="Price: " />  <h:outputText value="Badge" />
+                </b:row>
+
+                <br/>
+                <b:dropButton value="Select size" size="sm" style="padding-top:5px">
+                <b:navLink value="Action" href="#"></b:navLink>
+                </b:dropButton>
+             
+             <br/>
+             <br/>         
+               
+                    
+               
+                    <td><b:button icon-align="right" look="success" value="Add to Cart"/></td>
+                    <td><code>look="success"</code></td>
+    
+        </b:container>-->
+   
+           <b:container fluid="true" contentDisabled="false">
+       <b:row contentDisabled="false">
+    
+      <b:column span="8" contentDisabled="false">
+      <!--<b:image small-screen="one-third" value="resources/images/stan-smith.jpg" tooltip="small-screen='one-third'"/>-->
+      <b:image name="test" large-screen="three-fourths"  value="resources/images/stan-smith.jpg"  tooltip="Stan Smith" tooltipPosition="right"/>
+
+    </b:column>
+      
+      
+    <b:column span="4">         
+     <b:row style="padding-top:290px">
+                <h:outputText value="Price: " />  <h:outputText value="Enter the price from database" />
+                </b:row>
+
+                <br/>
+                <b:dropButton value="Select size" size="sm" style="padding-top:5px">
+                <b:navLink value="Action" href="#"></b:navLink>
+                </b:dropButton>
+                
+                <br/>
+             <br/>
+             
+                
+                <td><b:button icon-align="right" look="success" value="Add to Cart"/></td>
+                    
+    </b:column>
+  </b:row>
+</b:container> 
+            
+            
+            
+             
+    </h:body>
+</html>

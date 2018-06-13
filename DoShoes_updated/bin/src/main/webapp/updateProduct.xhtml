@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Update Product</title>
+    </h:head>
+    <h:body>
+		<ui:composition template="./WEB-INF/templates/layout.xhtml">
+            <ui:define name="content">
+				
+
+                <b:container>
+                    <div class="update-prod">
+					<h:form>
+						<b:panelGrid columns="2" style="margin-top: 90px">
+							<b:panel>
+								<b:row>
+									<b:column medium-screen="2">
+										<h:outputText value="Product Name" />
+									</b:column>
+									<h:inputText value="#{productBean.productName}"></h:inputText>
+
+								</b:row>
+								<br></br><br></br>
+								<b:row>
+									<b:column medium-screen="2">
+										<h:outputText value="Product Price" />
+									</b:column>
+									<h:inputText id="itemPrice" value="#{productBean.productPrice}"></h:inputText>
+									<h:message for="itemPrice"></h:message>
+								</b:row>
+								<br></br><br></br>
+								<b:row>
+									<b:column medium-screen="2">
+										<h:outputText value="Product Brand" />
+									</b:column>
+									<h:inputText id="itemBrand" value="#{productBean.brand}"></h:inputText>
+									<h:message for="itemBrand"></h:message>
+								</b:row>
+								<br></br><br></br>
+								<b:row>
+									<b:column medium-screen="2">
+										<h:outputText value="Product Category" />
+									</b:column>
+									<h:inputText id="itemCat" value="#{productBean.category}"></h:inputText>
+									<h:message for="itemCat"></h:message>
+								</b:row>
+								<br></br><br></br>
+								<b:row>
+									<b:column medium-screen="2">
+										<h:outputText value="Product Size" />
+									</b:column>
+									<h:inputText id="itemSize" value="#{productBean.size}"></h:inputText>
+									<h:message for="itemSize"></h:message>
+								</b:row>
+								<br></br><br></br>
+								<b:row>
+									<b:column medium-screen="2">
+										<h:outputText value="Product Image URL" />
+									</b:column>
+									<h:inputText id="itemImage" value="#{productBean.productImage}"></h:inputText>
+									<h:message for="itemImage"></h:message>
+								</b:row>
+						
+								<b:row>
+									<b:commandButton action="#{productController.save()}" look="success" value="Save"/>
+								</b:row>
+								<br></br><br></br>
+							</b:panel>
+						</b:panelGrid>
+
+					</h:form>
+                    </div>
+				</b:container>
+			</ui:define>
+		</ui:composition>
+    </h:body>
+</html>

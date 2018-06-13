@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cart</title>
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    </h:head>
+    <h:body>
+		<ui:composition template="./WEB-INF/templates/layout.xhtml">
+            <ui:define name="content">
+				<h:outputStylesheet library="css" name="style.css" />
+
+				<b:container>
+					<h1>Your Cart</h1>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<div align="right" col-md="5">
+							<!-- Identify your business so that you can collect the payments. -->
+							<input type="hidden" name="business" value="shweta.kumari2502@gmail.com"/>
+							<!-- Specify a Buy Now button. -->
+							<input type="hidden" name="cmd" value="_xclick"/>
+							<!-- Specify details about the item that buyers will purchase. -->
+							<h:dataTable value="#{cartController.productsInCart}" var="item" id="cart" styleClass="table table-striped table-bordered"
+										 style="width:100%">  
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Product Image" />
+									</f:facet>
+									<h:graphicImage style="width:50px;height:50px" value="#{item.productImage}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Product Name" />
+									</f:facet>
+									<h:outputText value="#{item.productName}" />
+									<input type="hidden" name="item_name" value="#{item.productName}"/>
+
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Product Price" />
+									</f:facet>
+									<h:outputText value="$#{item.productPrice}" />
+									<input type="hidden" name="amount" value="#{cartManagedBean.cartTotal}"/>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Product Brand" />
+									</f:facet>
+									<h:outputText value="#{item.brand}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Product Category" />
+									</f:facet>
+									<h:outputText value="#{item.category}" />
+
+									<f:facet name="footer">
+										<h:panelGroup style="display:block; text-align:left">
+											<h:outputText style="font-weight:bold" value="Total: $#{cartManagedBean.cartTotal}" />
+										</h:panelGroup>
+									</f:facet>
+								</h:column>
+                                                                
+								<input type="hidden" name="currency_code" value="USD"/>                       
+								<!-- Prompt buyers to enter the quantities they want. -->
+								<input type="hidden" name="undefined_quantity" value="2"/>
+							</h:dataTable>
+
+							<!-- Display the payment button. -->
+							<b:link action="#{cartController.submitOrder()}">
+								<input type="image" name="submit" border="0"
+									   src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+									   alt="Pay with PayPal"/>
+								<img alt="" border="0" width="1" height="1"
+									 src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" />
+								<!-- <button styleClass="submit"  look="danger" value="Empty Cart" />-->
+							</b:link>
+						</div>
+					</form>
+					<h:form>
+						<b:commandButton id="empty-cart-btn" action="#{cartController.emptyCart()}" value="Empty Cart" look="danger"></b:commandButton>&nbsp;
+                                                <b:commandButton action="products?faces-redirect=true" value="Continue Shopping" look="success"></b:commandButton>
+					</h:form>
+				</b:container>
+				<br/>
+			</ui:define>
+		</ui:composition>
+    </h:body>
+</html>
+
